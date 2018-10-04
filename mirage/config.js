@@ -3,7 +3,7 @@ export default function() {
   this.namespace = '/';
 
     // creating object with data for model, passed to route --> this.store.findAll('todo')
-    var jsonObject = 
+    var todosList = 
           [
             {
               id :1,
@@ -32,33 +32,36 @@ export default function() {
             }
         ]
         // Request to get the model
-    this.get('/todos', ()=> {
+    this.get('/todos', ()=> {    
       return {
-        todo: jsonObject   
+        todo: todosList   
       }
     });
     //Request to post to model
-    this.post('/todos', ()=> {
+    this.post('/todos', (db, request)=> {
+      // I need to return the new object after adding the new todo to it
+      var attrs = JSON.parse(request.requestBody).todo; // getting the todo object
+      todosList.push({ // adding todo object id, title, and isCompleted
+        id: Number(attrs.id),
+        title: attrs.title,
+        isCompleted: attrs.isCompleted
+      });
       return {
-        todo: jsonObject   
+        todo: todosList // now returning the new object  
       }
     });
     // Request to delete from model
-     this.del('/todos/:id', ()=> {
-      return {
-        todo: jsonObject   
-      }
+     this.del('/todos/:id', (db, request)=> {
+      var id = Number(request.params.id); // getting the id to be deleted
+      var length  = todosList.length;
+      for( var i = 0; i < length; i++){ 
+         if ( todosList[i].id === id ) {
+              return {
+                  todo: todosList.splice(i,1) // removing the todo object from todosList
+                }
+          }
+      } 
     });
-    // this.get('/todos/:id', ()=> {
-    //   return {
-    //     todo: jsonObject   
-    //   }
-    // });
-    // this.put('/todos/:id', ()=> {
-    //   return {
-    //     todo: jsonObject   
-    //   }
-    // });
 }
   // These comments are here to help you get started. Feel free to delete them.
 
