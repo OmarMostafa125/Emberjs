@@ -7,7 +7,7 @@ export default Component.extend({
 		//action to add item to todoList array
 		addItem(item){
 			// if item is null or has been added to the list before
-			if (item !== undefined && this.get('todoList').toLowerCase().indexOf(item.toLowerCase()) === -1){
+			if (item !== undefined && this.get('todoList').indexOf(item) === -1){
 				if (item.length === 0 ) {
 					var r = confirm("Do you really want to add null to the list?");
 					// add null
