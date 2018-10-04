@@ -1,5 +1,30 @@
 {{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
+{{!-- {{welcome-page}} --}}
 {{!-- Feel free to remove this! --}}
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      
+      <a class="navbar-brand" style="color: white;">EmberJs Demo</a>
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            {{!-- link to the 3 routes that we have! --}}
+          	{{#link-to "simpleToDoList" }} 
+          	<a class="nav-link">Simple to Do List</a>{{/link-to}}
+          </li>
+         <li class="nav-item">
+          	{{#link-to "simpleToDoList_2" }} 
+          	<a class="nav-link" >Simple to Do List_2</a>{{/link-to}}
+          </li>
+          <li class="nav-item">
+          	{{#link-to "todos" }} 
+          	<a class="nav-link" >Todo using Model</a>{{/link-to}}
+          </li>
+        </ul>
+      </div>
+    </nav>
+    {{!-- Display all outlets here!! --}}
+    	{{outlet}}
+  </body>
 
-{{outlet}}
+

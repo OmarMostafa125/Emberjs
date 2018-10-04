@@ -1,0 +1,13 @@
+<form class="form-inline mt-2 mt-md-0">
+	{{input class="form-control mr-sm-2" type="text" placeholder="Add/Delete" value=item}}
+	{{!-- two buttons for addItem and removeItem, using action helpers --}}
+	<button class="btn btn-outline-success my-2 my-sm-0" {{action "addItem" item}}>Add Item</button>&nbsp;&nbsp;
+	<button class="btn btn-outline-success my-2 my-sm-0" {{action "removeItem" item}}>Delete Item</button>
+</form>
+<ul class="list-group">
+	{{!-- looping through the array and display the data --}}
+	{{#each todoList as |todo|}}
+		<li class="list-group-item">{{todo}}</li>
+	{{/each}}
+</ul>
+{{yield}}
